@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#head .logo {
+    float: left;
+}
+
+#head .HtmlTable {
+    float: right;
+}
+
+#head .HtmlTable ul li {
+    float: left;
+    background-color: #fff;
+    height: 100%;
+    width: 180px;
+    margin-right: 10px;
+}
+
+#foodDomain .foodImg li {
+    display: inline-block;
+}
+
+#foodDomain .foodImg li img {
+    width: 350px;
+}

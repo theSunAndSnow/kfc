@@ -1,4 +1,4 @@
-环境为 IDEA Maven Web 项目。
+此项目为 IDEA Maven Web 项目。
 
 使用 Tomcat 部署服务器
 
@@ -11,3 +11,4 @@
 请求进入 Java Web 应用后，Controller 接收该请求，进行业务逻辑处理，最终将处理结果的结果 （Model） 返回给用户（View）![image-20200519004738585](README.assets/image-20200519004738585.png)
 
 并使用 git 进行版本控制。
+
