@@ -47,10 +47,44 @@
     color: white;
 }
 
+#foodDomain {
+    text-align: center;
+    margin-top: 10px;
+}
+
 #foodDomain .foodImg li {
     display: inline-block;
+    width: 380px;
+    height: 340px;
+    border: 1px #d0d0d0 solid;
+    margin-bottom: 10px;
+}
+
+#foodDomain .foodImg li div {
+    width: 380px;
+    height: 20px;
+}
+
+#foodDomain .foodImg li div div {
+    text-align: left;
+    margin-left: 10px;
+}
+
+#foodDomain .foodImg li div span {
+    color: rgb(224, 99, 103);
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+    margin-top: 10px;
+    font-size: 12px;
 }
 
 #foodDomain .foodImg li img {
-    width: 370px;
+    /* width: 370px; */
+    width: 100%;
+}
+
+#order {
+    border: 10px solid red;
 }
