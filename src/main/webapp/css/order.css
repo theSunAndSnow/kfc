@@ -18,6 +18,8 @@
 
 #head .HtmlTable {
     float: right;
+    height: 69px;
+    line-height: 69px;
 }
 
 #head .HtmlTable ul li {
@@ -28,10 +30,27 @@
     margin-right: 10px;
 }
 
+#head .HtmlTable ul li a {
+    color: rgb(241, 97, 121);
+    font-family: "微软雅黑";
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 25px;
+}
+
+#head .HtmlTable ul li a:hover {
+    background-color: red;
+    color: white;
+}
+
 #foodDomain .foodImg li {
     display: inline-block;
 }
 
 #foodDomain .foodImg li img {
-    width: 350px;
+    width: 370px;
 }
