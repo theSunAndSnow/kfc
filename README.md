@@ -43,3 +43,17 @@ public class BuyServiceImpl implements BuyService {
 
 
 
+### debug
+
+登陆界面写好后，测试正确账号与密码能否正常跳转至 order.html 。发现无法进入。![image-20200521142109517](README.assets/image-20200521142109517.png)
+
+原因使 loginServlet 服务器请求被取消。
+
+将 login.html 中的 form 表单中的服务器响应地址action 修改后即可解决问题。
+
+修改前：![image-20200521142320419](README.assets/image-20200521142320419.png)
+
+修改后：![image-20200521142401315](README.assets/image-20200521142401315.png)
+
+成功进入跳转页面：![image-20200521142735105](README.assets/image-20200521142735105.png)
+

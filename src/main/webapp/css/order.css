@@ -12,8 +12,18 @@
     clear: both;
 }
 
+#head {
+    position: relative;
+}
+
 #head .logo {
     float: left;
+}
+
+#head .loginStatus {
+    position: absolute;
+    margin-top: 7.5px;
+    left: 201px;
 }
 
 #head .HtmlTable {

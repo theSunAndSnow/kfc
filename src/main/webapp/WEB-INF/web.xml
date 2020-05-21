@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+    <filter-name>AjaxRedirect</filter-name>
+    <filter-class>com.theSunAndSnow.filter.AjaxRedirectFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>AjaxRedirect</filter-name>
+    <url-pattern>/loginServlet</url-pattern>
+    <url-pattern>/buyServlet</url-pattern>
+  </filter-mapping>
 </web-app>

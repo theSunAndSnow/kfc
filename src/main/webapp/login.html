@@ -1,0 +1,55 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: wangziyang
+ * @Date: 2020-05-20 17:18:58
+ * @LastEditors: wangziyang
+ * @LastEditTime: 2020-05-21 14:23:34
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <section id="content">
+        <!-- head -->
+        <div class="content-header">
+            <a href="javascript:;">我要登陆</a>
+            <a href="javascript:;">我要注册</a>
+        </div>
+        <!-- 内容 -->
+        <div class="content-body">
+            <div class="dom">
+                <form action="/loginServlet" method="POST">
+                    <div class="s1">
+                        <h4>账号</h4>
+                        <input name="username" type="text" placeholder="手机">
+                    </div>
+                    <div class="s1">
+                        <h4>密码</h4>
+                        <input name="password" type="password" placeholder="密码">
+                    </div>
+                    <div class="s2">
+                        <input type="checkbox">
+                        <span>记住密码</span>
+                    </div>
+                    <input type="submit" class="btn" value="登&nbsp;录">
+                </form>
+                <div class="dom-footer">
+                    <div class="login-another">
+                        <span>还没有注册账号?</span>
+                        <a href="#">立即注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/login.js"></script> -->
+</body>
+</html>

@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 09:17:19
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-20 14:37:36
+ * @LastEditTime: 2020-05-21 14:56:48
  */ 
 $(function() {
 
@@ -58,4 +58,16 @@ $(function() {
             "json"
         );
     }); 
+
+    var login = function() {
+        $.get(
+            "loginServlet",
+            {method : "status"},
+            function(data) {
+                if (data.status == true) {
+                    $(".login").html("欢迎回来" + data.name)
+                }
+            }
+        )
+    }
 });
