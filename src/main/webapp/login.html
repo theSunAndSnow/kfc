@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 17:18:58
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-21 17:18:00
+ * @LastEditTime: 2020-05-21 20:57:17
 --> 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +19,11 @@
     <section id="content">
         <!-- head -->
         <div class="content-header">
-            <a href="javascript:;">我要登陆</a>
-            <a href="javascript:;">我要注册</a>
+            <a id="doLogin" href="javascript:;">我要登陆</a>
+            <a id="doRegister" href="javascript:;">我要注册</a>
         </div>
-        <!-- 内容 -->
-        <div class="content-body">
+        <!-- 登陆 -->
+        <div class="content-body-login" hidden>
             <div class="dom">
                 <form action="/loginServlet" method="POST">
                     <div class="s1">
@@ -48,8 +48,37 @@
                 </div>
             </div>
         </div>
+            <!-- 注册 -->
+        <div class="content-body-register">
+            <div class="dom">
+                <form action="/loginServlet" method="POST">
+                    <div class="s1">
+                        <h4>账号</h4>
+                        <input name="username" type="text" placeholder="手机">
+                    </div>
+                    <div class="s1">
+                        <h4>密码</h4>
+                        <input name="password" type="password" placeholder="密码">
+                    </div>
+                    <div class="s1">
+                        <h4>姓名</h4>
+                        <input name="name" type="text" placeholder="请输入您的姓名">
+                    </div>
+                    <div class="s1">
+                        <h4>性别</h4>
+                        <input name="sex" type="text" placeholder="请输入您的性别">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <input type="submit" class="btn" value="注&nbsp;册">
+                </form>
+                <div class="dom-footer">
+                </div>
+            </div>
+        </div>
     </section>
-    <!-- <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="js/login.js"></script> -->
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

@@ -4,13 +4,10 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 17:20:49
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-21 14:09:28
+ * @LastEditTime: 2020-05-21 21:06:16
  */ 
 
 $(function() {
-
-    var un = null;
-    var pw = null;
 
     // TODO:竟然无法用这种方式使用 click？？？？
     // $(".btn").click = function() {
@@ -49,5 +46,34 @@ $(function() {
     //     //     window.location.href("login.html");
     //     // }
     // });
+
+
+    $("#doLogin").on("click", function() {
+
+        // 将内容切换成登陆页面
+        $(".content-body-register").prop("hidden", true);
+        $(".content-body-login").prop("hidden", false);
+
+        $("#doLogin").css({
+            background : "#e0e0e0"
+        });
+
+        $("#doRegister").css({
+            background : "white"
+        });
+    });
+
+    $("#doRegister").on("click", function() {
+        $(".content-body-register").prop("hidden", false);
+        $(".content-body-login").prop("hidden", true);
+
+        $("#doLogin").css({
+            background : "white"
+        });
+
+        $("#doRegister").css({
+            background : "#e0e0e0"
+        });
+    })
 
 })
