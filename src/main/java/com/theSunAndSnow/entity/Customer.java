@@ -5,6 +5,7 @@ public class Customer {
     private String telephone;
     private String password;
     private String name;
+    private String sex;
     private boolean loginStatus;
 
     public Customer() {
@@ -26,6 +27,15 @@ public class Customer {
         this.telephone = telephone;
         this.password = password;
         this.name = name;
+        this.loginStatus = loginStatus;
+    }
+
+    public Customer(Integer id, String telephone, String password, String name, String sex, boolean loginStatus) {
+        this.id = id;
+        this.telephone = telephone;
+        this.password = password;
+        this.name = name;
+        this.sex = sex;
         this.loginStatus = loginStatus;
     }
 
@@ -67,5 +77,13 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

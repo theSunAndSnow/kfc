@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 17:20:49
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-21 21:06:16
+ * @LastEditTime: 2020-05-22 06:01:23
  */ 
 
 $(function() {
@@ -74,6 +74,11 @@ $(function() {
         $("#doRegister").css({
             background : "#e0e0e0"
         });
-    })
+    });
+
+    $(".btn").on("click", function () {
+        var xhr = new XMLHttpRequest();
+        console.log("xhr" + xhr);
+    });
 
 })

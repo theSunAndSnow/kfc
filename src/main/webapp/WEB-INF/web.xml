@@ -34,5 +34,6 @@
   <filter-mapping>
     <filter-name>CharacterFilter</filter-name>
     <url-pattern>/loginServlet</url-pattern>
+    <url-pattern>/registerServlet</url-pattern>
   </filter-mapping>
 </web-app>
