@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 09:17:19
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-21 14:56:48
+ * @LastEditTime: 2020-05-21 17:22:46
  */ 
 $(function() {
 
@@ -64,10 +64,15 @@ $(function() {
             "loginServlet",
             {method : "status"},
             function(data) {
-                if (data.status == true) {
-                    $(".login").html("欢迎回来" + data.name)
+                console.log("登陆成功", data);
+                if (data[0].status == true) {
+                    console.log(data[1].telephone);
+                    $(".login").html("欢迎回来" + '<span>' + data[1].telephone + "</span>");
                 }
-            }
+            },
+            "json"
         )
-    }
+    };
+
+    login(); // 每次页面刷新都会检查账号是否已经登陆
 });

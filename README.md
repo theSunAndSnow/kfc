@@ -57,3 +57,29 @@ public class BuyServiceImpl implements BuyService {
 
 成功进入跳转页面：![image-20200521142735105](README.assets/image-20200521142735105.png)
 
+
+
+
+
+
+
+在 order.html 中希望可以展示用户名，当后端就数据传递给前端，当时却发现前端接受到的数据存在中文乱码现象。
+
+数据库中用户名：![image-20200521153058387](README.assets/image-20200521153058387.png)
+
+后端代码：![image-20200521153247188](README.assets/image-20200521153247188.png)
+
+前端接受到的 name 变量却为：![image-20200521153343840](README.assets/image-20200521153343840.png)
+
+![image-20200521153401869](README.assets/image-20200521153401869.png)
+
+后来想到后端常用的：可以在后端使用 过滤器 来解决中文乱码问题。
+
+然后新建一个类 CharacterFilter 来设置中文数据格式。![image-20200521153947931](README.assets/image-20200521153947931.png)
+
+在 xml 文件中设置 filter 映射：![image-20200521154051116](README.assets/image-20200521154051116.png)
+
+
+
+但是结果无效，依旧产生乱码。![image-20200521154135054](README.assets/image-20200521154135054.png)
+
