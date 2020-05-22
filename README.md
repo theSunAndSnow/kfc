@@ -59,4 +59,41 @@ public class BuyServiceImpl implements BuyService {
 
 
 
+### Debug2
+
+在注册界面注册过程中发现一个注册异常现象，注册账号数据库中并不存在，但是却注册失败。![image-20200522164756801](README.assets/image-20200522164756801.png)
+
+数据库中并没有这个账号：![image-20200522164903051](README.assets/image-20200522164903051.png)
+
+在浏览器按下 F12，查看传入后端数据，发现数据传送正确，所以应该是后端出现了 bug。![image-20200522165017554](README.assets/image-20200522165017554.png)
+
+![image-20200522165105908](README.assets/image-20200522165105908.png)
+
+在后端，打开 IDEA 的 DEBUG 功能。为确定 bug 位置，首先在 RegisterServlet 这个接收客户端数据和请求的服务器中打断点，检查是哪条语句没有达到预期效果。
+
+![image-20200522165651670](README.assets/image-20200522165651670.png)
+
+结果发现 customer 值返回为 null。![image-20200522165740271](README.assets/image-20200522165740271.png)
+
+这说明与数据库直接进行操作的 customerRepository 类中出现了 bug。再在 customerRepository 中打断点进一步判断 bug 位置。![image-20200522165947298](README.assets/image-20200522165947298.png)
+
+结果发现 执行 preparedStatement.executeUpdate(); 语句后游标直接跳到了 catch 捕获异常模块中：![image-20200522170357066](README.assets/image-20200522170357066.png)
+
+![image-20200522170507612](README.assets/image-20200522170507612.png)
+
+
+
+说明异常一定是因为与 mysql 数据库直接交互过程中发生了错误。查看抛出的异常信息：![image-20200522170655535](README.assets/image-20200522170655535.png)
+
+原来是因为用户的姓名太长！
+
+查看 mysql 数据库 customer 表，发现存储的 name 变量字符串长度最多只能是 10 个字符长度！！![image-20200522170902753](README.assets/image-20200522170902753.png)
+
+更改长度后即可解决此 bug。
+
+![image-20200522170943768](README.assets/image-20200522170943768.png)
+
+![image-20200522171011036](README.assets/image-20200522171011036.png)
+
+用户注册正常，bug 解决。![image-20200522171122117](README.assets/image-20200522171122117.png)
 
