@@ -1,0 +1,111 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: wangziyang
+ * @Date: 2020-05-22 13:11:49
+ * @LastEditors: wangziyang
+ * @LastEditTime: 2020-05-22 15:06:48
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button">Get Name</button>
+    <hr>
+    <h1>Not AJAX GET FORM</h1>
+    <form action="/testServlet" method="GET">
+        <input type="text" name="name">
+        <input type="submit" value="Submit">
+    </form>
+
+    <h1>AJAX GET FORM</h1>
+    <form id="getForm">
+        <input type="text" name="name" id="name1">
+        <input type="submit" value="Submit">
+    </form>
+    <h1>AJAX POST FORM</h1>
+    <form id="postForm">
+        <input type="text" name="name" id="name2">
+        <input type="submit" value="Submit">
+    </form>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+        document.getElementById("button").addEventListener("click", getName);
+        document.getElementById("getForm").addEventListener("submit", getNameBySubmitInGet);
+        document.getElementById("postForm").addEventListener("submit", getNameBySubmitInPost);
+
+        /**
+         * 以 AJAX 方式提交表单，后端无法重定向，但是不会提交后自动刷新页面跳转到服务器地址
+         * 局部刷新
+         */
+        function getName() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/testServlet", true);
+
+            xhr.onreadystatechange = function() {
+                // console.log(xhr.responseText);
+                var resp = JSON.parse(this.responseText);
+                console.log(resp);
+                if (resp.status === true) {
+                    alert("success");
+                } else {
+                    alert("false");
+                }
+            }
+
+            xhr.send();
+        }
+
+        /**
+         * 既可以以表单形式提交，又可以重定向，即使后端不重定向，也会刷新页面进入后端服务器地址
+         */
+        function getNameBySubmitInGet(e) {
+            e.preventDefault(); //如果 type 属性是 "submit"，在事件传播的任意阶段可以调用任意的事件句柄，通过调用该方法，可以阻止提交表单。
+            var name = $("#name1").val();
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/testServlet?name=" + name, true); // 我搞不到这里 true 是否还能发挥作用……
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(xhr.responseText); // 后端将重定向网址发送过来，被打印在控制台。    
+                }
+            }
+
+            xhr.send();
+        }
+
+        function getNameBySubmitInPost(e) {
+            e.preventDefault(); //如果 type 属性是 "submit"，在事件传播的任意阶段可以调用任意的事件句柄，通过调用该方法，可以阻止提交表单。
+            var name = $("#name2").val();
+            var params = "name=" + name; // params 可以写成url中传递参数的形式 
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/testServlet", true); // 我搞不到这里 true 是否还能发挥作用……
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 我们需要设置 content-type
+
+            xhr.onload = function() {
+                console.log(this.responseText);
+            }
+
+            xhr.onreadystatechange = function() {
+                // if (this.readyState == 4 && this.status == 200) {
+                    
+                // }
+            };
+
+            /**
+             * send(a&b&c)多个参数
+             * send(null)表示不发送参数
+             * 只有 post 请求需要在send中添加参数，当然也可以在url中添加，但是post的优势就不能体现了
+             */
+            xhr.send(params);
+        }
+    </script>
+</body>
+</html>

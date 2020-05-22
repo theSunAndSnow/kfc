@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 09:17:19
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-21 17:22:46
+ * @LastEditTime: 2020-05-22 07:57:23
  */ 
 $(function() {
 
@@ -56,7 +56,7 @@ $(function() {
                 console.log(data);
             },
             "json"
-        );
+        ); 
     }); 
 
     var login = function() {
