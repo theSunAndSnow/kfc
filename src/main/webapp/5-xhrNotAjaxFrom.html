@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-22 13:11:49
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-22 15:06:48
+ * @LastEditTime: 2020-05-22 16:10:23
 --> 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@
     <script>
         document.getElementById("button").addEventListener("click", getName);
         document.getElementById("getForm").addEventListener("submit", getNameBySubmitInGet);
-        document.getElementById("postForm").addEventListener("submit", getNameBySubmitInPost);
+            
 
         /**
          * 以 AJAX 方式提交表单，后端无法重定向，但是不会提交后自动刷新页面跳转到服务器地址
@@ -91,6 +91,7 @@
 
             xhr.onload = function() {
                 console.log(this.responseText);
+                alert("success");
             }
 
             xhr.onreadystatechange = function() {

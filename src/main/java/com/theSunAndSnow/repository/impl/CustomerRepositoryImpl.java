@@ -49,7 +49,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) { // 验证账号是否已存在,若不存在，则注册
-                sql = "insert into customer (telephone, name, sex, password) VALUES\n" +
+                sql = "insert into customer (telephone, `name`, sex, password) VALUES\n" +
                         "(?, ?, ?, ?);";
 
                 preparedStatement = connection.prepareStatement(sql);
