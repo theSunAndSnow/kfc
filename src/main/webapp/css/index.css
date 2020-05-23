@@ -127,8 +127,72 @@ body {
     margin-top: 0.5rem;
 }
 
+.main-content .loopImages {
+    width: 55.8rem;
+    height: 35.4rem;
+    position: relative;
+}
+
+.loopImages #button0,
+.loopImages #button1 {
+    position: absolute;
+
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    color: red;
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.loopImages #button0 {
+    right: 4rem;
+    bottom: 1rem;
+}
+
+.loopImages #button1 {
+    right: 1.5rem;
+    bottom: 1rem;
+}
+
+.loopImages #button0:hover,
+.loopImages #button1:hover {
+    cursor: pointer;
+}
+
+.loopImages .currentButton { /* 注意 id 的样式设置优先级高于 class */
+    color: white !important;
+    background-color: red !important;
+}
+
+.ImagesOfActivity img:last-child {
+    display: none;
+    /* margin-bottom: 1rem; */
+}
+
+.LitterImagesOfActivity {
+    /* width: 100%; */
+    margin-top: 0.8rem;
+}
+
 .LittleImagesOfActivity-content {
+    /* margin-top: 0.8rem; */
+    width: 100%;
+}
+
+.LittleImagesOfActivity-content img {
+    width: 27.2rem;
+}
+
+.LittleImagesOfActivity-content img:first-child {
+    /* margin-right: 0.1rem; */
     float: left;
+}
+
+.LittleImagesOfActivity-content img:last-child {
+    float: right;
 }
 
 /* 中间栏-end */
