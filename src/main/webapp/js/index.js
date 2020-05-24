@@ -4,17 +4,26 @@
  * @Author: wangziyang
  * @Date: 2020-05-23 14:07:20
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-24 04:41:42
+ * @LastEditTime: 2020-05-24 15:58:12
  */ 
 
 $(function() {
-    $('.activities>li').mouseenter(function () { 
-        $(this).find('p').prop('hidden', false);
-    });
-    $('.activities>li').mouseleave(function () { 
-        $(this).find('p').prop('hidden', true);
+    // $('.activities>li').mouseenter(function () { 
+    //     $(this).find('p').prop('hidden', false);
+    // });
+    // $('.activities>li').mouseleave(function () { 
+    //     $(this).find('p').prop('hidden', true);
+    // });
+
+    $('.activities>li').mouseenter(function() {
+        $(this).find('p').slideDown(500);
     });
 
+    $('.activities>li').mouseleave(function () { 
+        $(this).find('p').slideUp(500);
+    });
+
+    // 轮播图-start
     var imgs = document.querySelectorAll(".ImagesOfActivity img");
     var loop = 0;
     setInterval(function() {
@@ -22,7 +31,7 @@ $(function() {
         loop %= 2;
         switchImg();
 
-    }, 2000);
+    }, 3000);
 
     $('#button0').on('click', function() {
         loop = 0;
@@ -44,4 +53,6 @@ $(function() {
         $('#button' + (loop)).addClass('currentButton');
         $('#button' + (loop + 1) % 2).removeClass('currentButton');
     }
+
+    // 轮播图-end
 })
