@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-23 14:07:20
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-24 15:58:12
+ * @LastEditTime: 2020-05-25 15:32:56
  */ 
 
 $(function() {
@@ -16,10 +16,12 @@ $(function() {
     // });
 
     $('.activities>li').mouseenter(function() {
+        $(this).find('p').stop();
         $(this).find('p').slideDown(500);
     });
 
     $('.activities>li').mouseleave(function () { 
+        $(this).find('p').stop();
         $(this).find('p').slideUp(500);
     });
 

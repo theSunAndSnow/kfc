@@ -26,6 +26,27 @@
     left: 201px;
 }
 
+#head .loginStatus span a:link {
+    color: #ec9bad;
+}
+
+#head .loginStatus span a:hover {
+    color: gold;
+    animation: flash 0.8s alternate infinite; /* 闪烁动画特效 */
+}
+
+@keyframes flash {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+#head .loginStatus span a:active {
+    color: #F16179;
+    font-weight: bolder;
+    /* font-size: larger; */
+}
+
+
 #head .HtmlTable {
     float: right;
     height: 69px;

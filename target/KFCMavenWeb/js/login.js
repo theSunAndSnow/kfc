@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 17:20:49
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-25 01:56:15
+ * @LastEditTime: 2020-05-25 09:44:15
  */ 
 
 $(function() {
@@ -102,44 +102,6 @@ $(function() {
             $('#sub').attr('type', 'button');
         }
     
-        // if ( (telephone != 0) && ( (telephone.length < 10 || telephone.length > 12) || ( telephone.length != toString(parseInt(telephone, 10)).length ) ) ) {
-        //     $('#register>div').eq(0).find('h4').html('' + 
-        //         '<h4>账号</h4>' +
-        //         '<span class="warning">请输入正确的手机号码</span>'
-        //     );
-        //     $('#sub').attr('type', 'button');
-        // } else {
-        //     // $('#register>div').eq(0).find('h4').html('' + 
-        //     //     '<h4>账号</h4>'
-        //     // );
-        //     // $('#sub').attr('type', 'submit');
-        //     forbidden('#register>div', 0, 'h4', '账号', 'submit');
-        // }
-    });
-
-
-    /**
-     * 监听用户是否输入密码，未输入密码无法注册
-     */
-    $('#password').on('input', function() {
-        var password = $(this).val();
-        if (password.length == 0) {
-            forbidden('#register>div', 1, 'h4', '密码', 'button');
-        } else {
-            forbidden('#register>div', 1, 'h4', '密码', 'submit');
-        }
-    });
-
-    /**
-     * 监听用户是否输入了姓名，为输入姓名则无法注册
-     */ 
-    $('#name').on('input', function() {
-        var name = $(this).val();
-        if (name.length == 0) {
-            forbidden('#register>div', 2, 'h4', '姓名', 'button');
-        } else {
-            forbidden('#register>div', 2, 'h4', '姓名', 'submit');
-        }
     });
 
     /**
@@ -220,38 +182,4 @@ function register(e) {
         xhr.send();
     }
 
-    // var params = "?telephone=" + telephone + 
-    //     "&password=" + password + 
-    //     "&name=" + name +
-    //     "&sex=" + sex;
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("GET", "/registerServlet" + params, true); // 我搞不到这里 true 是否还能发挥作用……
-
-    // xhr.onreadystatechange = function() {
-    //     if (this.readyState == 4 && (this.status == 200 || this.status == 302)) {
-    //         console.log(this.responseText);
-    //         var resp = JSON.parse(this.responseText);
-    //         console.log(resp);
-    //         console.log("注册状态" + resp.status);
-    //         if (resp.status === true) {
-    //             alert("注册成功！请登陆！");
-    //         } else {
-    //             alert("注册失败！手机号已被注册，请使用其他手机号！");
-    //         }
-    //     }
-    // }
-
-    // // xhr.onload = function() {
-    // //     console.log(this.responseText);
-    // //     var resp = JSON.parse(this.responseText);
-    // //     console.log(resp);
-    // //     if (resp.status === true) {
-    // //         alert("success");
-    // //     } else {
-    // //         alert("false");
-    // //     }
-    // // }
-    // xhr.send();
-    
 };
