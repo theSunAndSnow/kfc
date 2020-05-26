@@ -1,5 +1,6 @@
 package com.theSunAndSnow.entity;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Order {
@@ -14,12 +15,48 @@ public class Order {
     private Double totalPayment;
     private Date time;
 
+//    快餐价格
     public static double CHICKEN_WING_PRICE = 12.0;
     public static double CHICKEN_WING_SET_MEAL_PRICE = 72.0;
     public static double BEER_PRICE = 15.0;
     public static double HAMBURGER_PRICE = 20.0;
     public static double CONGEE_PRICE = 10.0;
     public static double COLA_PRICE = 11.0;
+
+//    各个打折时间段
+    public static Calendar BREAKFAST_Begin = Calendar.getInstance();
+    public static Calendar BREAKFAST_End = Calendar.getInstance();
+    public static Calendar DINNER_Begin = Calendar.getInstance();
+    public static Calendar DINNER_End = Calendar.getInstance();
+    public static Calendar NIGHTSNACK_Begin = Calendar.getInstance();
+    public static Calendar NIGHTSNACK_End = Calendar.getInstance();
+
+    static  {
+//        设置打折时间段的具体时间
+        BREAKFAST_Begin.set(Calendar.HOUR_OF_DAY, 5);
+        BREAKFAST_Begin.set(Calendar.MINUTE, 45);
+        BREAKFAST_Begin.set(Calendar.MILLISECOND, 0);
+
+        BREAKFAST_End.set(Calendar.HOUR_OF_DAY, 9);
+        BREAKFAST_End.set(Calendar.MINUTE, 14);
+        BREAKFAST_End.set(Calendar.MILLISECOND, 0);
+
+        DINNER_Begin.set(Calendar.HOUR_OF_DAY, 9);
+        DINNER_Begin.set(Calendar.MINUTE, 15);
+        DINNER_Begin.set(Calendar.MILLISECOND, 0);
+
+        DINNER_End.set(Calendar.HOUR_OF_DAY, 22);
+        DINNER_End.set(Calendar.MINUTE, 44);
+        DINNER_End.set(Calendar.MILLISECOND, 0);
+
+        NIGHTSNACK_Begin.set(Calendar.HOUR_OF_DAY, 11);
+        NIGHTSNACK_Begin.set(Calendar.MINUTE, 0);
+        NIGHTSNACK_Begin.set(Calendar.MILLISECOND, 0);
+
+        NIGHTSNACK_End.set(Calendar.HOUR_OF_DAY, 12);
+        NIGHTSNACK_End.set(Calendar.MINUTE, 0);
+        NIGHTSNACK_End.set(Calendar.MILLISECOND, 0);
+    }
 
     public Order() {
     }

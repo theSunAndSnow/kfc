@@ -10,12 +10,29 @@ import java.sql.SQLException;
 
 public class OrderRepositoryImpl implements OrderRepository {
     @Override
-    public void addOrder(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime) {
-        Double totalPayment = chickenWing * Order.CHICKEN_WING_PRICE
-                              + chickenWingSetMeal * Order.CHICKEN_WING_SET_MEAL_PRICE
+    public void addOrder(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem) {
+        int chickenWingDiscount = 0, congeeDiscount = 0, chcikenWingSetMealDiscount = 0;
+
+        switch (discountItem) {
+            case "chickenWing" :
+                chickenWingDiscount = 1;
+                break;
+
+            case "congee" :
+                congeeDiscount = 1;
+                break;
+
+            case "chickenWingSetMeal" :
+                chcikenWingSetMealDiscount = 1;
+                break;
+        }
+
+//        根据 discountItem 来确定打折后的商品价格
+        Double totalPayment = chickenWing * ( Order.CHICKEN_WING_PRICE * (1 - 0.2 * chickenWingDiscount) )
+                              + chickenWingSetMeal * ( Order.CHICKEN_WING_SET_MEAL_PRICE * (1 - 0.2 * chcikenWingSetMealDiscount) )
                               + beer * Order.BEER_PRICE
                               + hamburger * Order.HAMBURGER_PRICE
-                              + congee * Order.CONGEE_PRICE
+                              + congee * ( Order.CONGEE_PRICE * (1 - 0.2 * congeeDiscount) )
                               + cola * Order.COLA_PRICE;
 
         Connection connection = JDBCTools.getConnection();
@@ -43,6 +60,10 @@ public class OrderRepositoryImpl implements OrderRepository {
         } finally {
             JDBCTools.release(connection, preparedStatement, null);
         }
-
     }
+
+//    public static void main(String[] args) {
+//        OrderRepository orderRepository = new OrderRepositoryImpl();
+//        orderRepository.addOrder(1, 1, 0, 0, 0, 0, 0, "2020-5-26 17:19:00", "chickenWing");
+//    }
 }

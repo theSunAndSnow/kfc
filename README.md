@@ -43,7 +43,21 @@ public class BuyServiceImpl implements BuyService {
 
 
 
-### debug
+### 测试不同时间段是否能得到正确的折扣食品
+
+在 BuyServiceImpl 类中 方法中临时增加一行控制台输出以及注释与数据库的连接，来测试能否获得当前时间段中折扣物品的名称。![image-20200526165341453](README.assets/image-20200526165341453.png)
+
+
+
+在 BuyServiceImpl 类中的 main 方法中新建 BuyServiceImpl 类，并执行 addOrder 方法来检查商品名称。![image-20200526165439538](README.assets/image-20200526165439538.png)
+
+运行后，控制台显示结果正确。![image-20200526165549042](README.assets/image-20200526165549042.png)
+
+当前时间段的确为 chickenWing 打折：![image-20200526165710642](README.assets/image-20200526165710642.png)
+
+
+
+## debug
 
 登陆界面写好后，测试正确账号与密码能否正常跳转至 order.html 。发现无法进入。![image-20200521142109517](README.assets/image-20200521142109517.png)
 
