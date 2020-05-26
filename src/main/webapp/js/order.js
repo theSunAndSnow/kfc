@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 09:17:19
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-25 17:21:34
+ * @LastEditTime: 2020-05-25 17:37:56
  */ 
 $(function() {
 
@@ -46,7 +46,7 @@ $(function() {
         nse = new Date(nightSnackEnd);
 
     
-    console.log(bfb, bfe, db, de, nsb, nse);
+    // console.log(bfb, bfe, db, de, nsb, nse);
 
     if (bfb < date && date <= bfe) {
         congeePrice = congeePrice * 0.8;
@@ -121,6 +121,6 @@ $(function() {
         )
     };
 
-    login(); // 每次页面刷新都会检查账号是否已经登陆
+    login(); // 每次页面刷新都会检查账号是否已经登陆，关闭浏览器会退出登录
     
 });
