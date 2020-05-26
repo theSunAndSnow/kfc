@@ -14,6 +14,18 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class OrderRepositoryImpl implements OrderRepository {
+    /**
+     * 向数据库中添加客户的账单记录
+     * @param customerId
+     * @param chickenWing
+     * @param chickenWingSetMeal
+     * @param beer
+     * @param hamburger
+     * @param congee
+     * @param cola
+     * @param boughtTime
+     * @param discountItem
+     */
     @Override
     public void addOrder(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem) {
 
@@ -60,7 +72,7 @@ public class OrderRepositoryImpl implements OrderRepository {
      * @param boughtTime
      * @param discountItem
      */
-    public void printReceipt(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem) {
+    private void printReceipt(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem) {
 
 //        从数据库获取用户姓名
         String customerName = getCustomerName(customerId);
@@ -130,6 +142,18 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
     }
 
+    /**
+     * 返回客户付款金额
+     * @param customerId
+     * @param chickenWing
+     * @param chickenWingSetMeal
+     * @param beer
+     * @param hamburger
+     * @param congee
+     * @param cola
+     * @param discountItem
+     * @return
+     */
     private Double getTotalPayment(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String discountItem) {
         int chickenWingDiscount = 0, congeeDiscount = 0, chcikenWingSetMealDiscount = 0;
 
@@ -158,6 +182,11 @@ public class OrderRepositoryImpl implements OrderRepository {
         return totalPayment;
     }
 
+    /**
+     * 根据客户id，返回客户姓名
+     * @param customerId
+     * @return
+     */
     private String getCustomerName(Integer customerId) {
         String customerName = null;
         Connection connection = JDBCTools.getConnection();
@@ -185,9 +214,4 @@ public class OrderRepositoryImpl implements OrderRepository {
         return customerName;
     }
 
-    public static void main(String[] args) {
-        OrderRepository orderRepository = new OrderRepositoryImpl();
-        ((OrderRepositoryImpl) orderRepository).printReceipt(1, 1, 1, 1, 1, 1, 1, "2020/5/26 19:10:30", "chickenWing");
-        System.out.println("成功");
-    }
 }
