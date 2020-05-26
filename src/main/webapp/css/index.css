@@ -232,6 +232,11 @@ body {
     padding-left: 0.5rem;
 }
 
+.left .activities li div#activitySlogan {
+    background-color: rgb(198, 0, 10);
+    margin-bottom: 0.6rem;
+}
+
 .left .activities li div#activity_1 {
     background-color: rgb(0, 176, 37);
 }
