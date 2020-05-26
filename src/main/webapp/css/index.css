@@ -76,7 +76,7 @@ body {
 
 /* 双飞翼布局-start */
 #majorBody {
-    min-width: 40rem;
+    min-width: 130rem;
     height: 20rem;
     /* background-color: green; */
 }
@@ -109,13 +109,22 @@ body {
 }
 
 #majorBody .right {
-    margin-left: -30.5rem;
+    margin-left: -23.2%;
 }
 /* 双飞翼布局-end */
 
 
 /* 中间栏-start */
-.main-content .newestActivities {
+
+.main-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content > .newestActivities {
     background-color: #e4e2e2;
     width: 55.8rem;
     height: 2.9rem;
@@ -180,6 +189,9 @@ body {
 .LittleImagesOfActivity-content {
     /* margin-top: 0.8rem; */
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .LittleImagesOfActivity-content img {
@@ -189,10 +201,12 @@ body {
 .LittleImagesOfActivity-content img:first-child {
     /* margin-right: 0.1rem; */
     float: left;
+    margin-right: 0.75rem;
 }
 
 .LittleImagesOfActivity-content img:last-child {
     float: right;
+    margin-left: 0.75rem;
 }
 
 /* 中间栏-end */
