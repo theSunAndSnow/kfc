@@ -5,6 +5,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.theSunAndSnow.entity.Customer;
 import com.theSunAndSnow.service.BuyService;
 import com.theSunAndSnow.service.Impl.BuyServiceImpl;
 
@@ -23,7 +26,10 @@ public class BuyServlet extends HttpServlet {
         Integer cola = Integer.parseInt( (String)req.getParameter("cola") );
         Boolean coupon = Boolean.parseBoolean(req.getParameter("coupon"));
 
-        buyService.customersBuy(1, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, coupon);
+        HttpSession session = req.getSession();
+        Integer customerId = ((Customer)session.getAttribute("customer")).getId();
+
+        buyService.customersBuy(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, coupon);
 
         System.out.println("/buyServlet 链接成功!");
     }
