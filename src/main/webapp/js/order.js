@@ -4,16 +4,16 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 09:17:19
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-27 18:39:54
+ * @LastEditTime: 2020-05-27 23:22:00
  */ 
 $(function() {
 
     var input = document.getElementsByTagName("input");
+    var couponNum = 0;
+    
+    queryCoupon();
 
-    $.get(
-        
-    );
-
+    
     /**
      * 获取用户购买的食品的数量
      */
@@ -42,8 +42,8 @@ $(function() {
         breakfastEnd = yearMonthDays + ' 09:14:00',
         dinnerBegin = yearMonthDays + ' 09:15:00',
         dinnerEnd = yearMonthDays + ' 22:44:00',
-        nightSnackBegin = yearMonthDays + ' 11:00:00',
-        nightSnackEnd = yearMonthDays + ' 11:59:59';
+        nightSnackBegin = yearMonthDays + ' 23:00:00',
+        nightSnackEnd = yearMonthDays + ' 23:59:59';
     
     var bfb = new Date(breakfastBegin),
         bfe = new Date(breakfastEnd),
@@ -60,13 +60,18 @@ $(function() {
      */
     if (bfb < date && date <= bfe) {
         congeePrice = congeePrice * 0.8;
+        $('.activityPrompet').css("display", "block");
         $('.activityPrompet').text('冬菇滑鸡');
     } else if (db <= date && date <= de) {
         chickenWingPrice = chickenWingPrice * 0.8;
+        $('.activityPrompet').css("display", "block");
         $('.activityPrompet').text('香辣鸡翅');
     } else if (nsb <= date && date <= nse) {
         chickenWingSetMealPrice = chickenWingSetMealPrice * 0.8;
+        $('.activityPrompet').css("display", "block");
         $('.activityPrompet').text('炸鸡啤酒套餐');
+    } else {
+        $('.activityPrompet').css("display", "none");
     }
     
     /**
@@ -107,6 +112,7 @@ $(function() {
                 hamburger : hamburgerNum,
                 congee : congeeNum,
                 cola : colaNum,
+                coupon : false
             },
             function(data) {
                 alert("响应成功");
@@ -133,4 +139,47 @@ $(function() {
 
     login(); // 每次页面刷新都会检查账号是否已经登陆，关闭浏览器会退出登录
     
+
+    $(".useCoupon").click(function() {
+        total *= 0.9;
+        $(".totalPayment").text("合计：" + total.toFixed(1)); // 精确到小数点后 1 位
+        $.get(
+            "buyServlet",
+            {
+                chickenWing : chickenWingNum,
+                chickenWingSetMeal : chickenWingSetMealNum,
+                beer : beerNum,
+                hamburger : hamburgerNum,
+                congee : congeeNum,
+                cola : colaNum,
+                coupon : true
+            },
+            function(data) {
+                alert("优惠券购买成功");
+                console.log(data);
+                queryCoupon();
+            },
+            "json"
+        );
+    });
+
+    /**
+     * 进入页面后向服务器请求此账号的优惠券数目
+     */
+    function queryCoupon() {
+        $.get(
+            "loginServlet",
+            {method : "queryCoupon"},
+            function(data) {
+                couponNum = data["couponNum"];
+                console.log("优惠券数量：" + couponNum);
+                if (couponNum > 0) {
+                    $(".useCoupon").css("display", "inline");
+                } else {
+                    $(".useCoupon").css("display", "none");
+                }
+            },
+            "json"
+        );
+    }
 });

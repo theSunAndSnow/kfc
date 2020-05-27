@@ -27,9 +27,9 @@ public class OrderRepositoryImpl implements OrderRepository {
      * @param discountItem
      */
     @Override
-    public void addOrder(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem) {
+    public void addOrder(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem, Boolean coupon) {
 
-        Double totalPayment = getTotalPayment(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, discountItem);
+        Double totalPayment = getTotalPayment(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, discountItem, coupon);
 
         Connection connection = JDBCTools.getConnection();
         PreparedStatement preparedStatement = null;
@@ -51,13 +51,15 @@ public class OrderRepositoryImpl implements OrderRepository {
 
             preparedStatement.executeUpdate();
 
+            reduceCouponNum(customerId, connection, preparedStatement); // 减少此用户优惠券的数量
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             JDBCTools.release(connection, preparedStatement, null);
         }
 
-        printReceipt(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, boughtTime, discountItem);
+        printReceipt(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, boughtTime, discountItem, coupon);
     }
 
     /**
@@ -72,12 +74,12 @@ public class OrderRepositoryImpl implements OrderRepository {
      * @param boughtTime
      * @param discountItem
      */
-    private void printReceipt(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem) {
+    private void printReceipt(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String boughtTime, String discountItem, Boolean coupon) {
 
 //        从数据库获取用户姓名
         String customerName = getCustomerName(customerId);
 
-        double totalPayment = getTotalPayment(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, discountItem);
+        double totalPayment = getTotalPayment(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, discountItem, coupon);
         int chickenWingDiscount = 0, congeeDiscount = 0, chcikenWingSetMealDiscount = 0;
 
         switch (discountItem) {
@@ -154,7 +156,7 @@ public class OrderRepositoryImpl implements OrderRepository {
      * @param discountItem
      * @return
      */
-    private Double getTotalPayment(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String discountItem) {
+    private Double getTotalPayment(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, String discountItem, Boolean coupon) {
         int chickenWingDiscount = 0, congeeDiscount = 0, chcikenWingSetMealDiscount = 0;
 
         switch (discountItem) {
@@ -178,6 +180,11 @@ public class OrderRepositoryImpl implements OrderRepository {
                 + hamburger * Order.HAMBURGER_PRICE
                 + congee * ( Order.CONGEE_PRICE * (1 - 0.2 * congeeDiscount) )
                 + cola * Order.COLA_PRICE;
+
+//        使用优惠券可以打九折
+        if (coupon) {
+            totalPayment *= 0.9;
+        }
 
         return totalPayment;
     }
@@ -212,6 +219,20 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
 
         return customerName;
+    }
+
+    private void reduceCouponNum(Integer customerId, Connection connection, PreparedStatement preparedStatement) {
+        String sql = "update  coupon\n" +
+                "set couponNum = couponNum - 1\n" +
+                "where customerId = ?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, customerId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

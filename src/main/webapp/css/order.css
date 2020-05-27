@@ -141,3 +141,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.buy > .useCoupon {
+    display: none;
+}

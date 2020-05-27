@@ -21,8 +21,9 @@ public class BuyServlet extends HttpServlet {
         Integer hamburger = Integer.parseInt( (String)req.getParameter("hamburger") );
         Integer congee = Integer.parseInt( (String)req.getParameter("congee") );
         Integer cola = Integer.parseInt( (String)req.getParameter("cola") );
+        Boolean coupon = Boolean.parseBoolean(req.getParameter("coupon"));
 
-        buyService.customersBuy(1, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola);
+        buyService.customersBuy(1, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, coupon);
 
         System.out.println("/buyServlet 链接成功!");
     }

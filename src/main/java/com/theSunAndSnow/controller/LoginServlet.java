@@ -90,6 +90,13 @@ public class LoginServlet extends HttpServlet {
                         System.out.println(list);
                     }
                     break;
+
+                case "queryCoupon" :
+                    Customer customer = (Customer)session.getAttribute("customer");
+                    Integer couponNum = loginService.getCouponNum(customer.getId());
+                    String couponNumJson = "{\"couponNum\" : " + couponNum + "}"; // 以json格式传递数据
+                    resp.getWriter().write(couponNumJson);
+                    break;
             }
     }
 

@@ -49,13 +49,13 @@ public class Order {
         DINNER_End.set(Calendar.MINUTE, 44);
         DINNER_End.set(Calendar.MILLISECOND, 0);
 
-        NIGHTSNACK_Begin.set(Calendar.HOUR_OF_DAY, 11);
+        NIGHTSNACK_Begin.set(Calendar.HOUR_OF_DAY, 23);
         NIGHTSNACK_Begin.set(Calendar.MINUTE, 0);
         NIGHTSNACK_Begin.set(Calendar.MILLISECOND, 0);
 
-        NIGHTSNACK_End.set(Calendar.HOUR_OF_DAY, 12);
-        NIGHTSNACK_End.set(Calendar.MINUTE, 0);
-        NIGHTSNACK_End.set(Calendar.MILLISECOND, 0);
+        NIGHTSNACK_End.set(Calendar.HOUR_OF_DAY, 23);
+        NIGHTSNACK_End.set(Calendar.MINUTE, 59);
+        NIGHTSNACK_End.set(Calendar.MILLISECOND, 59);
     }
 
     public Order() {

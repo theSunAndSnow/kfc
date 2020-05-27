@@ -15,7 +15,7 @@ public class BuyServiceImpl implements BuyService {
     private OrderRepository orderRepository = new OrderRepositoryImpl();
 
     @Override
-    public void customersBuy(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola) {
+    public void customersBuy(Integer customerId, Integer chickenWing, Integer chickenWingSetMeal, Integer beer, Integer hamburger, Integer congee, Integer cola, Boolean coupon) {
         Date date = new Date(); // 获取当前客户购买时间
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置工具类 simpleDateFormat 要转换成的格式
@@ -30,9 +30,13 @@ public class BuyServiceImpl implements BuyService {
             discount = "chickenWingSetMeal";
         }
 
+        Calendar calendar1 = Order.NIGHTSNACK_Begin;
+        Calendar calendar2 = Order.NIGHTSNACK_End;
+        System.out.println(Order.NIGHTSNACK_Begin);
+        System.out.println(Order.NIGHTSNACK_End);
 //        System.out.println(discount);
 //        System.out.println(boughtTime);
-        orderRepository.addOrder(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, boughtTime, discount);
+        orderRepository.addOrder(customerId, chickenWing, chickenWingSetMeal, beer, hamburger, congee, cola, boughtTime, discount, coupon);
     }
 
     /**
@@ -41,6 +45,6 @@ public class BuyServiceImpl implements BuyService {
      */
     public static void main(String[] args) {
         BuyService buyService = new BuyServiceImpl();
-        buyService.customersBuy(1, 1, 1,1,1,1, 1);
+        buyService.customersBuy(1, 1, 1,1,1,1, 1, false);
     }
 }
