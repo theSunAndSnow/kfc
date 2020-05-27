@@ -24,8 +24,8 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = (String)req.getParameter("username");
-        String password = (String)req.getParameter("password");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
         HttpSession session = req.getSession();
         System.out.println(username + "+" + password);
 

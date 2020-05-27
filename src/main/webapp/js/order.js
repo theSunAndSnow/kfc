@@ -4,11 +4,15 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 09:17:19
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-25 17:37:56
+ * @LastEditTime: 2020-05-27 18:39:54
  */ 
 $(function() {
 
     var input = document.getElementsByTagName("input");
+
+    $.get(
+        
+    );
 
     /**
      * 获取用户购买的食品的数量
@@ -18,6 +22,9 @@ $(function() {
         beerNum = 0, hamburgerNum = 0, congeeNum = 0,
         colaNum = 0;
 
+    /**
+     * 定义食品价格
+     */
     var chickenWingPrice = 12.0, chickenWingSetMealPrice = 72.0,
         beerPrice = 15.0, hamburgerPrice = 20.0,
         congeePrice = 10.0, colaPrice = 11.0;
@@ -48,6 +55,9 @@ $(function() {
     
     // console.log(bfb, bfe, db, de, nsb, nse);
 
+    /**
+     * 根据当前时间，根据优惠活动来更改商品价格
+     */
     if (bfb < date && date <= bfe) {
         congeePrice = congeePrice * 0.8;
         $('.activityPrompet').text('冬菇滑鸡');
@@ -74,13 +84,13 @@ $(function() {
             colaNum = $("#cola").val();
 
             total = chickenWingNum * chickenWingPrice + 
-                chickenWingSetMealNum * chickenWingSetMealPrice + 
-                beerNum * beerPrice + 
-                hamburgerNum * hamburgerPrice + 
-                congeeNum * congeePrice + 
-                colaNum * colaPrice;
+                    chickenWingSetMealNum * chickenWingSetMealPrice + 
+                    beerNum * beerPrice + 
+                    hamburgerNum * hamburgerPrice + 
+                    congeeNum * congeePrice + 
+                    colaNum * colaPrice;
 
-                $(".totalPayment").text("合计：" + total.toFixed(1)); // 精确到小数点后 1 位
+            $(".totalPayment").text("合计：" + total.toFixed(1)); // 精确到小数点后 1 位
         };
     }
 
