@@ -125,7 +125,22 @@
     position: relative;
 }
 
+.buy > .form {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    width: 350px;
+    /* background-color: green; */
+    text-align: center;
+    margin-left: 38.5%;
+}
+
+.buy > .form button {
+    width: 25%;
+}
+
 .buy > .activityPrompet {
+    z-index: 5;
     position: absolute;
     top: 10px;
     right: 100px;
