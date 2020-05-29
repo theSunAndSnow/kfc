@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-23 14:07:20
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-05-25 15:32:56
+ * @LastEditTime: 2020-05-29 10:03:59
  */ 
 
 $(function() {
@@ -57,4 +57,15 @@ $(function() {
     }
 
     // 轮播图-end
+
+    $('.right > a').css({
+        display : 'inline-block',
+        color: 'white',
+        font: '1.6rem bold',
+        'background-color': 'rgb(198, 0, 10)',
+        height: '2.9rem',
+        'line-height': '2.9rem',
+        width: '100%',
+        'text-align': 'center'
+    })
 })
