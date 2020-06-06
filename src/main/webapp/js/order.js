@@ -4,7 +4,7 @@
  * @Author: wangziyang
  * @Date: 2020-05-20 09:17:19
  * @LastEditors: wangziyang
- * @LastEditTime: 2020-06-06 14:25:04
+ * @LastEditTime: 2020-06-06 14:39:16
  */ 
 $(function() {
 
@@ -17,10 +17,11 @@ $(function() {
     /**
      * 获取用户购买的食品的数量
      */
-    var total = 0;
-    var chickenWingNum = 0, chickenWingSetMealNum = 0,
-        beerNum = 0, hamburgerNum = 0, congeeNum = 0,
-        colaNum = 0;
+    // var total = 0;
+    // var chickenWingNum = 0, chickenWingSetMealNum = 0,
+    //     beerNum = 0, hamburgerNum = 0, congeeNum = 0,
+    //     colaNum = 0;
+    var foodNum = new FoodNum(0, 0, 0, 0, 0, 0, 0);
 
     /**
      * 定义食品价格
@@ -81,21 +82,21 @@ $(function() {
         var j = i;
 
         input[j].onclick = function() {
-            chickenWingNum = $("#chickenWing").val();
-            chickenWingSetMealNum = $("#chickenWingSetMeal").val();
-            beerNum = $("#beer").val();
-            hamburgerNum = $("#hamburger").val();
-            congeeNum = $("#congee").val();
-            colaNum = $("#cola").val();
+            foodNum.chickenWingNum = $("#chickenWing").val();
+            foodNum.chickenWingSetMealNum = $("#chickenWingSetMeal").val();
+            foodNum.beerNum = $("#beer").val();
+            foodNum.hamburgerNum = $("#hamburger").val();
+            foodNum.congeeNum = $("#congee").val();
+            foodNum.colaNum = $("#cola").val();
 
-            total = chickenWingNum * chickenWingPrice + 
-                    chickenWingSetMealNum * chickenWingSetMealPrice + 
-                    beerNum * beerPrice + 
-                    hamburgerNum * hamburgerPrice + 
-                    congeeNum * congeePrice + 
-                    colaNum * colaPrice;
+            foodNum.total = foodNum.chickenWingNum * chickenWingPrice + 
+                    foodNum.chickenWingSetMealNum * chickenWingSetMealPrice + 
+                    foodNum.beerNum * beerPrice + 
+                    foodNum.hamburgerNum * hamburgerPrice + 
+                    foodNum.congeeNum * congeePrice + 
+                    foodNum.colaNum * colaPrice;
 
-            $(".totalPayment").text("合计：" + total.toFixed(1)); // 精确到小数点后 1 位
+            $(".totalPayment").text("合计：" + foodNum.total.toFixed(1)); // 精确到小数点后 1 位
         };
     }
 
@@ -106,12 +107,12 @@ $(function() {
         $.get(
             "buyServlet",
             {
-                chickenWing : chickenWingNum,
-                chickenWingSetMeal : chickenWingSetMealNum,
-                beer : beerNum,
-                hamburger : hamburgerNum,
-                congee : congeeNum,
-                cola : colaNum,
+                chickenWing : foodNum.chickenWingNum,
+                chickenWingSetMeal : foodNum.chickenWingSetMealNum,
+                beer : foodNum.beerNum,
+                hamburger : foodNum.hamburgerNum,
+                congee : foodNum.congeeNum,
+                cola : foodNum.colaNum,
                 coupon : false
             },
             function(data) {
@@ -146,12 +147,12 @@ $(function() {
         $.get(
             "buyServlet",
             {
-                chickenWing : chickenWingNum,
-                chickenWingSetMeal : chickenWingSetMealNum,
-                beer : beerNum,
-                hamburger : hamburgerNum,
-                congee : congeeNum,
-                cola : colaNum,
+                chickenWing : foodNum.chickenWingNum,
+                chickenWingSetMeal : foodNum.chickenWingSetMealNum,
+                beer : foodNum.beerNum,
+                hamburger : foodNum.hamburgerNum,
+                congee : foodNum.congeeNum,
+                cola : foodNum.colaNum,
                 coupon : true
             },
             function(data) {
@@ -187,5 +188,30 @@ $(function() {
 
 
 
+    /**
+     * FoodNum 构造函数
+     * 包含所有种类食物的数量信息 以及 总价格 total
+     */
+    function FoodNum(chickenWingNum, chickenWingSetMealNum, beerNum,
+        hamburgerNum, congeeNum, colaNum, total) {
+        this.chickenWingNum = chickenWingNum;
+        this.chickenWingSetMealNum = chickenWingSetMealNum;
+        this.beerNum = beerNum;
+        this.hamburgerNum = hamburgerNum;
+        this.congeeNum = congeeNum;
+        this.colaNum = colaNum;
+        this.total = total;
+    }
+    FoodNum.prototype = {
+        showAllFoodNum : function() {
+            console.log(this.chickenWingNum, this.chickenWingSetMealNum,
+                        this.beerNum, this.hamburgerNum, this.congeeNum,
+                        this.colaNum, this.total);
+        }
+    }
+    Object.defineProperty(FoodNum.prototype, 'constructor',{
+        enumerable : false,
+        value : FoodNum
+    });
     
 });

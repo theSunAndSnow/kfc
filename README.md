@@ -1,4 +1,12 @@
+**注意：由于为web项目，因此若想运行后端源码，必须使用 IDEA 下的 Maven Web 工程，并运行 Tomcat （推荐版本9.0.33）才可以正常运行整个 web 项目**
+
 此项目为 IDEA Maven Web 项目。
+
+### 涉及技术：
+
+前端：HTML、CSS、JavaScript、jQuery、JSON
+
+后端：Java、Gson、c3p0、jUtiles、
 
 使用 Tomcat 部署服务器
 
@@ -10,7 +18,11 @@
 
 请求进入 Java Web 应用后，Controller 接收该请求，进行业务逻辑处理，最终将处理结果的结果 （Model） 返回给用户（View）![image-20200519004738585](README.assets/image-20200519004738585.png)
 
-并使用 git 进行版本控制。
+使用 git 进行版本控制。![image-20200606144350212](README.assets/image-20200606144350212.png)
+
+在 order.js 中使用了许多的变量来表示用户选择的各种食物的数量：![](README.assets/oldFoodNum-1591425534460.png)
+
+这些变量都是表示食物数量 这个功能范围内，因此，可以封装成一个对象。使用 JavaScript 中创建对象的两种著名的设计模式：`构造函数模式` 和 `原型模式`。![](README.assets/newFoodNum-1591425715198.png)
 
 *********
 
@@ -110,4 +122,16 @@ public class BuyServiceImpl implements BuyService {
 ![image-20200522171011036](README.assets/image-20200522171011036.png)
 
 用户注册正常，bug 解决。![image-20200522171122117](README.assets/image-20200522171122117.png)
+
+### Debug3
+
+在后端开发过程即将完成时，突然无法使用账号登录网页，在后端使用断点后发现是因为 c3p0 无法获得 数据库连接。查看异常日志，显示异常信息：
+
+APPARENT DEADLOCK!!! Creating emergency threads for unassigned pending task!
+
+花了两天时间，终于在一篇博客中找到了解决方案(csdn)[https://blog.csdn.net/abcyyjjkk/article/details/70240412]
+
+修改 c3p0-config.xml 配置文件中的属性为：![](README.assets/c3p0xml-1591425450783.png)
+
+重启 Tomcat 服务器后，终于可以取得 connection 对象，登录成功！![image-20200606142319188](README.assets/image-20200606142319188.png)
 
