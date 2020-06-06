@@ -1,0 +1,305 @@
+html {
+    font-size: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*******************************头部-start*************************/
+
+#head {
+    position: relative;
+}
+
+#head .logo {
+    float: left;
+}
+
+#head .loginStatus {
+    position: absolute;
+    margin-top: 7.5px;
+    left: 201px;
+}
+
+#head .HtmlTable {
+    float: right;
+    height: 69px;
+    line-height: 69px;
+}
+
+#head .HtmlTable ul li {
+    float: left;
+    background-color: #fff;
+    height: 100%;
+    width: 180px;
+    margin-right: 10px;
+}
+
+#head .HtmlTable ul li a {
+    color: rgb(241, 97, 121);
+    font-family: "微软雅黑";
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 25px;
+}
+
+#head .HtmlTable ul li a:hover {
+    background-color: red;
+    color: white;
+}
+
+/*******************************头部-end*************************/
+
+
+
+/*******************************主体-start*************************/
+
+/* 双飞翼布局-start */
+#majorBody {
+    min-width: 130rem;
+    height: 20rem;
+    /* background-color: green; */
+}
+
+#majorBody .main,
+#majorBody .left,
+#majorBody .right {
+    float: left;
+}
+
+#majorBody .left,
+#majorBody .right {
+    width: 20.1rem;
+    height: 50rem;
+    /* background-color: red; */
+}
+
+#majorBody .main {
+    width: 100%;
+    height: 30rem;
+    /* background-color: skyblue; */
+}
+
+#majorBody .main .main-content {
+    margin: 0 33rem;
+}
+
+#majorBody .left {
+    margin-left: -90.25%;
+}
+
+#majorBody .right {
+    margin-left: -23.2%;
+}
+/* 双飞翼布局-end */
+
+
+/* 中间栏-start */
+
+.main-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content > .newestActivities {
+    background-color: #e4e2e2;
+    width: 55.8rem;
+    height: 2.9rem;
+    border-radius: 0.5rem;
+    line-height: 2.9rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-content .loopImages {
+    width: 55.8rem;
+    height: 35.4rem;
+    position: relative;
+}
+
+.loopImages #button0,
+.loopImages #button1 {
+    position: absolute;
+
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    color: red;
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.loopImages #button0 {
+    right: 4rem;
+    bottom: 1rem;
+}
+
+.loopImages #button1 {
+    right: 1.5rem;
+    bottom: 1rem;
+}
+
+.loopImages #button0:hover,
+.loopImages #button1:hover {
+    cursor: pointer;
+}
+
+.loopImages .currentButton { /* 注意 id 的样式设置优先级高于 class */
+    color: white !important;
+    background-color: red !important;
+}
+
+.ImagesOfActivity img:last-child {
+    display: none;
+    /* margin-bottom: 1rem; */
+}
+
+.LitterImagesOfActivity {
+    /* width: 100%; */
+    margin-top: 0.8rem;
+}
+
+.LittleImagesOfActivity-content {
+    /* margin-top: 0.8rem; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.LittleImagesOfActivity-content img {
+    width: 27.2rem;
+}
+
+.LittleImagesOfActivity-content img:first-child {
+    /* margin-right: 0.1rem; */
+    float: left;
+    margin-right: 0.75rem;
+}
+
+.LittleImagesOfActivity-content img:last-child {
+    float: right;
+    margin-left: 0.75rem;
+}
+
+/* 中间栏-end */
+
+
+/* 左边栏-start */
+
+#majorBody .left {
+    border: 0.1rem solid #c0bdbd;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.left .activities li div {
+    margin: 0.2rem 0;
+    height: 2.9rem;
+    line-height: 2.9rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding-left: 0.5rem;
+}
+
+.left .activities li div#activitySlogan {
+    background-color: rgb(198, 0, 10);
+    margin-bottom: 0.6rem;
+}
+
+.left .activities li div#activity_1 {
+    background-color: rgb(0, 176, 37);
+}
+
+.left .activities li div#activity_2 {
+    background-color: rgb(254, 131, 22);
+}
+
+.left .activities li div#activity_3 {
+    background-color: rgb(98, 16, 46);
+}
+
+.left .activities li div span {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.activities .p-1 {
+    font-size: 1.3rem;
+    border: 0.2rem dashed green;
+    background-image: url("/images/th.jpg");
+    height: 11rem;
+    padding-top: 1rem;
+    line-height: 1.9rem; /* 设置行间距 */
+}
+
+.activities .p-2 {
+    font-size: 1.3rem;
+    border: 0.2rem dashed rgb(254, 131, 22);
+    background-image: url("/images/OIP.jpg");
+    height: 11rem;
+    padding-top: 1rem;
+    line-height: 1.9rem; /* 设置行间距 */
+}
+
+.activities .p-3 {
+    font-size: 1.3rem;
+    border: 0.2rem dashed rgb(98, 16, 46);
+    background-image: url("/images/OIP2.jpg");
+    height: 11rem;
+    padding-top: 1rem;
+    margin-left: -0.5rem;
+    line-height: 1.9rem; /* 设置行间距 */
+}
+
+.activities strong {
+    color: red;
+    font-size: bold;
+}
+
+/* 左边栏-end */
+
+
+/* 右边栏-start */
+
+#majorBody .right {
+    border: 0.1rem solid #c0bdbd;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+
+/* 右边栏-end */
+
+/*******************************主体-end*************************/
